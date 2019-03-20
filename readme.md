@@ -5,6 +5,7 @@
 * As a first step, try getting one of the translators working.
 * There's a list of translators [here](https://github.com/zotero/translators)
 * They seem to mainly depend on `utilities.js`
+* [THERE'S A STANDALONE TRANSLATION SERVER!](https://github.com/zotero/translation-server)
 
 # Zotero Structure
 * Most stuff is in `chrome/content/zotero`, a bit more is in `resources`
@@ -15,3 +16,4 @@
 * OK. We don't care about sandboxing. The only stuff `arXiv.js.org` seems to use is `Zotero.Utilities`.
 * Each translator doesn't look like valid JS code. Meant to be fetched by `Zotero.Translators.init`, then loaded by `Zotero.Translate._loadTranslator`, and executed by `Zotero.Translate.SandboxManager.eval` together with Mozilla's sandbox.
 * The sandbox is set up in `Zotero.Translate.SandboxManager`'s constructor and augmented in `Zotero.Translate._generateSandbox`
+
