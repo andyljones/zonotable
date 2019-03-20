@@ -1,0 +1,4 @@
+* Want to hook up the Zotero's ability to parse a wide range of documents into metadata to Notable's excellent notetaking
+* Specifically, want to be able to run [Zotero translators](https://www.zotero.org/support/dev/translators) on a URL, then save the JSON down as a 'nice' Markdown file in Notable's directory.
+* Would be happy with a first version that worked in Python from the command line; Chrome extensios can wait till later. 
+* First trick though is being able to call the translation service at all. Key seems to be `Zotero.Translate.Web` in `translate.js`, but I've no idea how to get it into a REPL or unit test. Probably has a bunch of dependencies I'm not yet aware of.
