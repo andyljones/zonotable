@@ -13,3 +13,5 @@
 * Starts by requiring `include.js`, which in turns pulls in `require.js` and a whoooole bunch of other stuff. Christ. Back to `translate.js`.
 * The translator's called inside the sandbox defined in `translate_firefox.js`, and that's a whole mess in itself.
 * OK. We don't care about sandboxing. The only stuff `arXiv.js.org` seems to use is `Zotero.Utilities`.
+* Each translator doesn't look like valid JS code. Meant to be fetched by `Zotero.Translators.init`, then loaded by `Zotero.Translate._loadTranslator`, and executed by `Zotero.Translate.SandboxManager.eval` together with Mozilla's sandbox.
+* The sandbox is set up in `Zotero.Translate.SandboxManager`'s constructor and augmented in `Zotero.Translate._generateSandbox`
