@@ -8,17 +8,15 @@ fieldConverters.title = function(value) {
 
 var itemConverters = {}
 itemConverters.default = function(json) {
-    var tags = json.tags.map(function (t) {return `"${t['tag']}"`})
-    var header = `
----
-title: ${json.title}
+    var tags = json.tags.map(function (t) {return `"papers/${t['tag']}"`})
+    var header = `---
+title: "${json.title}"
 created: ${new Date().toISOString()} 
 modified: ${new Date().toISOString()} 
 attachments: []
 tags: [${tags.join(', ')}]
----
-`
-    var result = [header, '## Metadata']
+---`
+    var result = [header, '### Metadata']
     for (var field in json) {
         var value = json[field];
         if (fieldConverters.hasOwnProperty(field)) {
