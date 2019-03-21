@@ -1,11 +1,11 @@
-const markdown = require('../src/markdown');
 const assert = require('assert');
+const markdown = require('../src/markdown');
 
 // Run this with `npm test -- --grep markdown`
 describe('apiJsonToMarkdown', function () {
     it('should run without crashing', function () {
-        var markdown = markdown.apiJsonToMarkdown(exports.TEST_DATA)
-        console.log(markdown)
+        var md = markdown.apiJsonToMarkdown(TEST_DATA)
+        console.log(md)
     })
 })
 
