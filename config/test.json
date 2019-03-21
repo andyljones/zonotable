@@ -1,0 +1,4 @@
+{
+	"testPort": 3456,
+	"identifierSearchURL": "http://identifier-search/search?q="
+}

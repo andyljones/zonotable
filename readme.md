@@ -1,3 +1,5 @@
+The contents of this repo are largely a copy of the Zotero translation server, just with the submodules replaced by specific copies of the underlying repos.
+
 # TODO
 * Write a Python script that, when called with a URL, starts a [translation server](https://github.com/zotero/translation-server)
 * Passes the URL to the translation server to get back JSON metadata
