@@ -23,5 +23,8 @@ At some point - when I've finished dogfooding - this'll be turned into an npm pa
 * Add a flag for adding tags. A lot of time the ones it picks up are annoying.
 * Turn this into an npm package
 * Raise an error through the browser if something goes wrong (and a message if it goes right?)
-* Make the tests actually test something.
+* Make the tests actually test something
 * Add a script for importing an existing Zotero library
+* Download PDF attachments and store them locally
+* Fix field orderings
+* Hash titles to prevent clashes

@@ -35,7 +35,7 @@ tags: ["papers", ${tags.join(', ')}]
             result.push(fieldConverters[field](value));
         }
     }
-    return result.join('\n');
+    return result;
 }
 itemConverters.attachment = function (json) {
     if (json.mimeType === 'application/pdf') {
@@ -45,7 +45,7 @@ itemConverters.attachment = function (json) {
 
 markdown.apiJsonToMarkdown = function (json) {
     if (Array.isArray(json)) {
-        return json.map(markdown.apiJsonToMarkdown).join('\n');
+        return json.map(markdown.apiJsonToMarkdown).flat();
     }
 
     if (itemConverters.hasOwnProperty(json.itemType)) {
