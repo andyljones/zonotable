@@ -1,0 +1,5 @@
+#!/bin/bash
+
+curl -d $1 -H 'Content-Type: text/plain' -s -o /dev/null http://127.0.0.1:1969/notable
+
+echo "Saved \"$1\""
