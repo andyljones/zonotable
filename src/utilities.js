@@ -286,9 +286,5 @@ Zotero.Utilities.itemToLegacyExportFormat = function(item) {
 	return item;
 }
 
-Zotero.Utilities.apiJsonToMarkdown = function (json) {
-	return 'hello there'
-}
-
 module.exports = Zotero.Utilities;
 

@@ -1,10 +1,10 @@
-require('../src/zotero');
-var utilities = require('../src/utilities');
-var assert = require('assert');
+const markdown = require('../src/markdown');
+const assert = require('assert');
 
+// Run this with `npm test -- --grep markdown`
 describe('apiJsonToMarkdown', function () {
     it('should run without crashing', function () {
-        markdown = Zotero.Utilities.apiJsonToMarkdown(exports.TEST_DATA)
+        var markdown = markdown.apiJsonToMarkdown(exports.TEST_DATA)
         console.log(markdown)
     })
 })

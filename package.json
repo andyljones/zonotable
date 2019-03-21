@@ -16,6 +16,7 @@
     "koa-bodyparser": "^4.2.1",
     "koa-route": "^3.2.0",
     "md5": "^2.2.1",
+    "mustache": "^3.0.1",
     "request": "^2.87.0",
     "request-promise-native": "^1.0.5",
     "serverless-http": "^1.6.0",
