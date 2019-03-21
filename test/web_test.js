@@ -23,7 +23,7 @@ describe("/web", function () {
 		assert.equal(response.statusCode, 200);
 		var json = response.body;
 		
-		assert.lengthOf(json, 1);
+		assert.lengthOf(json, 2);
 		assert.equal(json[0].itemType, 'journalArticle');
 		assert.equal(json[0].title, 'Title');
 	});
@@ -64,7 +64,7 @@ describe("/web", function () {
 		assert.equal(response.statusCode, 200);
 		var json = response.body;
 		
-		assert.lengthOf(json, 1);
+		assert.lengthOf(json, 2);
 		assert.equal(json[0].itemType, 'journalArticle');
 		assert.equal(json[0].title, 'Title');
 		assert.equal(json[0].url, finalURL);
@@ -93,7 +93,7 @@ describe("/web", function () {
 		assert.equal(response.statusCode, 200);
 		var json = response.body;
 		
-		assert.lengthOf(json, 1);
+		assert.lengthOf(json, 2);
 		assert.equal(json[0].itemType, 'journalArticle');
 		assert.equal(json[0].title, 'Titre');
 	});

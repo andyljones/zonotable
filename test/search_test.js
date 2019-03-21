@@ -118,7 +118,7 @@ describe("/search", function () {
 		assert.equal(response.statusCode, 200);
 		var json = response.body;
 		
-		assert.lengthOf(json, 1);
+		assert.lengthOf(json, 2);
 		assert.equal(json[0].itemType, 'journalArticle');
 		assert.equal(json[0].title, articleTitle1);
 	});
@@ -131,7 +131,7 @@ describe("/search", function () {
 		assert.equal(response.statusCode, 200);
 		var json = response.body;
 		
-		assert.lengthOf(json, 1);
+		assert.lengthOf(json, 2);
 		assert.equal(json[0].itemType, 'journalArticle');
 		assert.equal(json[0].title, articleTitle1);
 	});
