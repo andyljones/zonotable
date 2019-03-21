@@ -1,4 +1,5 @@
 node_modules
+.vscode
 config/production.json
 config/dev.json
 config/local.json

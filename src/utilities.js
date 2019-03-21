@@ -160,7 +160,8 @@ Zotero.Utilities.itemToAPIJSON = function(item) {
 				newItems.push({
 					itemType:   "attachment",
 					parentItem: newItem.key,
-					title:      attachment.title.toString(),
+					// Some attachements - like images - don't have a title
+					title:      (attachment.title || "").toString(),
 					mimeType:   attachment.mimeType.toString(),
 					url:        attachment.url.toString(),
 				});
@@ -283,6 +284,10 @@ Zotero.Utilities.itemToLegacyExportFormat = function(item) {
 	}
 	
 	return item;
+}
+
+Zotero.Utilities.apiJsonToMarkdown = function (json) {
+	return 'hello there'
 }
 
 module.exports = Zotero.Utilities;
