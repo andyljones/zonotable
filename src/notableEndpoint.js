@@ -22,4 +22,10 @@ NotableEndpoint.saveMarkdownForNotable = function (json) {
 NotableEndpoint.handle = async function (ctx, next) {
     await WebEndpoint.handle(ctx, next);
     NotableEndpoint.saveMarkdownForNotable(ctx.response.body);
+
+    ctx.set('Access-Control-Allow-Origin', '*');
+    ctx.set('Access-Control-Request-Method', '*');
+    ctx.set('Access-Control-Request-Method', '*');
+    ctx.set('Access-Control-Allow-Methods', 'POST')
+    ctx.set('Access-Control-Allow-Headers', 'Content-Type');
 }

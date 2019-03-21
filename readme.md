@@ -1,5 +1,11 @@
 The contents of this repo are largely a copy of the Zotero translation server, just with the submodules replaced by specific copies of the underlying repos.
 
+The bookmarklet is 
+
+```
+javascript:(function()%7B(function%20()%20%7Bxhr%20%3D%20new%20XMLHttpRequest()%3Bxhr.open('POST'%2C%20encodeURI('http%3A%2F%2F127.0.0.1%3A1969%2Fnotable'))%3Bxhr.send(document.location.href)%3B%7D())%7D)()
+```
+
 # TODO
 * Write a Python script that, when called with a URL, starts a [translation server](https://github.com/zotero/translation-server)
 * Passes the URL to the translation server to get back JSON metadata
