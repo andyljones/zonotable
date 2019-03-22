@@ -22,7 +22,8 @@ NotableEndpoint.saveForNotable = function (json) {
     // Add the original metadata as an attachment so should the Markdown layout ever change, it
     // can all be regenerated. Guess who's been burnt by that kind of thing before.
     var content = markdown.apiJsonToMarkdown(json);
-    content.push(`**Metadata**: [JSON](../attachments/${stub}.json)`)
+    content.push(`**Metadata**: [JSON](@attachment/${stub}.json)`)
+    content.push(`**Markdown**: [${stub}.md](@note/${stub}.md)`)
 
     console.log(`Saving note "${stub}" to "${notePath}"`)
     fs.writeFileSync(notePath, content.join('\n'));
