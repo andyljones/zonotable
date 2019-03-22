@@ -3,24 +3,27 @@ var markdown = module.exports = {};
 
 var fieldConverters = {}
 fieldConverters.title = function (value) {
-    return `**Title**: ${value}`;
+    return [3, `**Title**: ${value}`];
 }
 fieldConverters.creators = function (value) {
-    return `**Authors**: ${value.map(function (v) {return v.lastName || v.name}).join(', ')}`;
+    return [5, `**Authors**: ${value.map(function (v) {return v.lastName || v.name}).join(', ')}`];
 }
 fieldConverters.date = function (value) {
-    return `**Date**: ${value}`;
+    return [6, `**Date**: ${value}`];
 }
 fieldConverters.accessDate = function (value) {
-    return `**Access Date**: ${value}`;
+    return [7, `**Accessed**: ${value}`];
 }
 fieldConverters.abstractNote = function (value) {
-    return `**Abstract**: ${value}`;
+    return [8, `**Abstract**: ${value}`];
+}
+fieldConverters.url = function (value) {
+    return [9, `**Original**: [URL](${value})`];
 }
 
 var itemConverters = {}
 itemConverters.default = function(json) {
-    var tags = json.tags.map(function (t) {return `"papers/${t['tag']}"`})
+    var tags = json.tags.map(function (t) {return `"papers/source/${t['tag']}"`})
     var header = `---
 title: "${json.title}"
 created: ${new Date().toISOString()} 
@@ -28,7 +31,7 @@ modified: ${new Date().toISOString()}
 attachments: []
 tags: ["papers", ${tags.join(', ')}]
 ---`
-    var result = [header, '### Notes\n\n\n### Metadata']
+    var result = [[0, header], [1, '### Notes\n'], [2, '### Metadata']]
     for (var field in json) {
         var value = json[field];
         if (fieldConverters.hasOwnProperty(field)) {
@@ -39,13 +42,20 @@ tags: ["papers", ${tags.join(', ')}]
 }
 itemConverters.attachment = function (json) {
     if (json.mimeType === 'application/pdf') {
-        return `**Attachment**: [${json.title}](${json.url})`;
-    } 
+        return [[4, `**Attachment**: [${json.title}](${json.url})`]];
+    } else {
+        return [[Infinity, '']]
+    }
 }
 
 markdown.apiJsonToMarkdown = function (json) {
     if (Array.isArray(json)) {
-        return json.map(markdown.apiJsonToMarkdown).flat();
+        return json
+                    .map(markdown.apiJsonToMarkdown)
+                    .flat()
+                    .sort()
+                    .map(function (it) {return it[1]})
+                    .filter(function (it) {return it !== ''});
     }
 
     if (itemConverters.hasOwnProperty(json.itemType)) {

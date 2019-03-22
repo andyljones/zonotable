@@ -18,13 +18,13 @@ One limitation right now is that it can't extract metadata directly from pdfs. R
 
 At some point - when I've finished dogfooding - this'll be turned into an npm package. And at some further point in the future, hopefully it'll be a [Notable plugin](https://github.com/notable/notable/issues/128).
 
+It's worth noting that I am not a very good JavaScript developer.
+
 ### TODO
 * Add more fields to the Markdown
-* Add a flag for adding tags. A lot of time the ones it picks up are annoying.
 * Turn this into an npm package
 * Raise an error through the browser if something goes wrong (and a message if it goes right?)
+* Find and catch the errors that manifest as `UnhandledPromiseRejectionWarning: Error: ESOCKETTIMEDOUT`. Manifests as a slightly misformatted Notable entry.
 * Make the tests actually test something
 * Add a script for importing an existing Zotero library
 * Download PDF attachments and store them locally
-* Fix field orderings
-* Hash titles to prevent clashes
