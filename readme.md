@@ -42,3 +42,5 @@ It's worth noting that I am not a very good JavaScript developer.
 * Index downloaded PDFs in a way that Notable can search? Uh, is this sensible?
 * Add mechanism for opening newly added papers in Notable. Needs a Notable API.
 * Figure out what's going on with CSR blocking requests on OpenReview. The Zotero extension works there, why doesn't the bookmark?
+    * Problem is the `Content-Security-Policy: connect-src 'self' export.arxiv.org` header that OpenReview serves. Zotero runs a 'background page' view where requests are done from, and that seems to bypass it.
+    * Turns out CSP has [killed bookmarklets in general](https://geordgez.github.io/jots/2017/12/31/xss-csp-bookmarklet). Welp. Need to develop an extension I guess. 
