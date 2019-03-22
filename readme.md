@@ -1,9 +1,15 @@
-**This is not yet ready for primetime unless you're up for janitoring your own reference manager**
+**This is not yet ready for primetime. Don't use this unless you're up for janitoring your own paper library.**
 
-This is a local webserver which adds research papers to [Notable](https://github.com/notable/notable). 
+This is a local webserver which makes it easy to add research papers to [Notable](https://github.com/notable/notable). This turns Notable into a paper library where note-taking is front and center.
+
+<p align="center"> 
+    <img src="screenshot.png" alt="Screenshot of Notable with an imported paper">
+</p>
+
+The motivation is that Zotero and Mendeley (the two paper libraries I've used previously) center on a giant table of paper titles/authors/publication dates/etc, when really the important parts are my notes, my tags, and search. Notable has a great tagging system, great Markdown notes, and fast search over both.
 
 ### Usage
-Install it with
+Install and run it with
 
 ```bash
 git clone git@github.com:andyljones/zonotable.git
@@ -33,4 +39,6 @@ It's worth noting that I am not a very good JavaScript developer.
 * Make the tests actually test something
 * Add a script for importing an existing Zotero library
 * Download PDF attachments and store them locally
+* Index downloaded PDFs in a way that Notable can search? Uh, is this sensible?
 * Add mechanism for opening newly added papers in Notable. Needs a Notable API.
+* Figure out what's going on with CSR blocking requests on OpenReview. The Zotero extension works there, why doesn't the bookmark?
