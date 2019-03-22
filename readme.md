@@ -6,7 +6,7 @@ This is a local webserver which makes it easy to add research papers to [Notable
     <img src="screenshot.png" alt="Screenshot of Notable with an imported paper">
 </p>
 
-The motivation is that Zotero and Mendeley (the two paper libraries I've used previously) center on a giant table of paper titles/authors/publication dates/etc, when really the important parts are my notes, my tags, and search. Notable has a great tagging system, great Markdown notes, and fast search over both.
+The motivation is that Zotero and Mendeley (the two paper libraries I've used previously) center on a giant table of paper titles/authors/publication dates/etc, when really the important parts are my notes, my tags, and search. Notable has a great tagging system, great Markdown notes, and fast search over both. Combined with Zotero's [huge list of reference importers](https://github.com/zotero/translators), it makes a handy tool for the industrial researcher.
 
 ### Usage
 Install and run it with
