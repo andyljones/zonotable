@@ -11,11 +11,11 @@ fieldConverters.creators = function (value) {
 fieldConverters.date = function (value) {
     return [6, `**Date**: ${value}`];
 }
-fieldConverters.accessDate = function (value) {
-    return [7, `**Accessed**: ${value}`];
-}
 fieldConverters.abstractNote = function (value) {
-    return [8, `**Abstract**: ${value}`];
+    return [7, `**Abstract**: ${value}`];
+}
+fieldConverters.accessDate = function (value) {
+    return [8, `**Accessed**: ${value}`];
 }
 fieldConverters.url = function (value) {
     return [9, `**Original**: [URL](${value})`];
@@ -23,7 +23,7 @@ fieldConverters.url = function (value) {
 
 var itemConverters = {}
 itemConverters.default = function(json) {
-    var tags = json.tags.map(function (t) {return `"papers/source/${t['tag']}"`})
+    var tags = (json.tags || []).map(function (t) {return `"papers/source/${t['tag']}"`})
     var header = `---
 title: "${json.title}"
 created: ${new Date().toISOString()} 
@@ -46,6 +46,9 @@ itemConverters.attachment = function (json) {
     } else {
         return [[Infinity, '']]
     }
+}
+itemConverters.note = function (json) {
+    return [[Infinity, '']]
 }
 
 markdown.apiJsonToMarkdown = function (json) {

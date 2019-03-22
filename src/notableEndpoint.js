@@ -41,15 +41,3 @@ NotableEndpoint.handle = async function (ctx, next) {
     ctx.set('Access-Control-Allow-Methods', 'POST')
     ctx.set('Access-Control-Allow-Headers', 'Content-Type');
 }
-
-
-// * PEARL paper
-// * Context-based metalearning.
-//   * Actor gets a context vector $z$ that's generated from a parameterized distribution $q$ and a collection of prior-experience vectors $c$
-//   * Opposite of context-based is gradient-based a la MAML or REPTILE.
-// * Training's done by drawing $c$ from a replay buffer, encoding $c$ down to $z$, passing $z$ to the actor and critic, and taking a Bellman step. Then backprop to train the actor, critic and encoder.
-// * Ablation studies show the stochasticity is important, probably for handling sparse rewards. 
-// * Ablation studies show that using a replay buffer to decorrelate samples helps a lot too.
-// * Headline 100x speedup is in meta-training sample efficiency, not adaptation efficiency.
-//   * Notable absence of adaptation efficiency benchmarks :/
-// * [Implementation](https://github.com/katerakelly/oyster)

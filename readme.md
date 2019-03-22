@@ -1,4 +1,9 @@
-This is a local webserver which adds research papers to [Notable](https://github.com/notable/notable). Install it using
+**This is not yet ready for primetime unless you're up for janitoring your own reference manager**
+
+This is a local webserver which adds research papers to [Notable](https://github.com/notable/notable). 
+
+### Usage
+Install it with
 
 ```bash
 git clone git@github.com:andyljones/zonotable.git
@@ -28,3 +33,4 @@ It's worth noting that I am not a very good JavaScript developer.
 * Make the tests actually test something
 * Add a script for importing an existing Zotero library
 * Download PDF attachments and store them locally
+* Add mechanism for opening newly added papers in Notable. Needs a Notable API.
