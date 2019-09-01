@@ -29,7 +29,7 @@ title: "${json.title}"
 created: ${new Date().toISOString()} 
 modified: ${new Date().toISOString()} 
 attachments: []
-tags: ["papers", ${tags.join(', ')}]
+tags: ["papers", "progress/untagged", ${tags.join(', ')}]
 ---`
     var result = [[0, header], [1, '### Notes\n'], [2, '### Metadata']]
     for (var field in json) {
