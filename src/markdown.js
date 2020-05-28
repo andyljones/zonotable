@@ -22,7 +22,7 @@ fieldConverters.url = function (value) {
 }
 
 var itemConverters = {}
-itemConverters.default = function(json) {
+itemConverters.notable = function(json) {
     var tags = (json.tags || []).map(function (t) {return `"papers/source/${t['tag']}"`})
     var header = `---
 title: "${json.title}"
@@ -40,6 +40,19 @@ tags: ["papers", "progress/untagged", ${tags.join(', ')}]
     }
     return result;
 }
+
+itemConverters.obsidian = function(json) {
+    var result = [[1, '### Notes\n'], [2, '### Metadata']];
+    for (var field in json) {
+        var value = json[field];
+        if (fieldConverters.hasOwnProperty(field)) {
+            result.push(fieldConverters[field](value));
+        }
+    }
+    result.push([100, '\n#papers #progress-untagged'])
+    return result;
+}
+
 itemConverters.attachment = function (json) {
     if (json.mimeType === 'application/pdf') {
         return [[4, `**Attachment**: [${json.title}](${json.url})`]];
@@ -51,19 +64,21 @@ itemConverters.note = function (json) {
     return [[Infinity, '']]
 }
 
-markdown.apiJsonToMarkdown = function (json) {
+markdown.apiJsonToMarkdown = function (json, style) {
     if (Array.isArray(json)) {
         return json
-                    .map(markdown.apiJsonToMarkdown)
+                    .map(x => markdown.apiJsonToMarkdown(x, style))
                     .flat()
-                    .sort()
+                    .sort((a, b) => a[0] - b[0])
                     .map(function (it) {return it[1]})
                     .filter(function (it) {return it !== ''});
     }
 
     if (itemConverters.hasOwnProperty(json.itemType)) {
         return itemConverters[json.itemType](json);
-    } else {
-        return itemConverters.default(json);
+    } else if (style == "notable") {
+        return itemConverters.notable(json);
+    } else if (style == "obsidian") { 
+        return itemConverters.obsidian(json);
     }
 }

@@ -4,37 +4,38 @@ const fs = require('fs');
 const sanitize = require("sanitize-filename");
 const md5 = require('md5');
 
-var NotableEndpoint = module.exports = {};
+var ObsidianEndpoint = module.exports = {};
 
-NotableEndpoint.notableNoteStub = function (json) {
+ObsidianEndpoint.obsidianNoteStub = function (json) {
     var first = json[0]
-    var title = sanitize(first.shortTitle || first.title).substring(0, 64)
+    var title = (first.shortTitle || first.title)
+                    .substring(0, 64)
+                    .replace(/[^a-zA-Z0-9- ]/g, '')
     var hash = md5(first.url || '').substring(0, 8)
-    return `papers-${title}-${hash}`
+    return `${title} (${hash})`
 }
 
-NotableEndpoint.saveForNotable = function (json) {
-    var stub = NotableEndpoint.notableNoteStub(json);
-    var notableDir = JSON.parse(fs.readFileSync(`${process.env.HOME}/.notable.json`))['cwd'];
-    var notePath = `${notableDir}/notes/${stub}.md`;
-    var metadataPath = `${notableDir}/attachments/${stub}.json`;
+ObsidianEndpoint.saveForObsidian = function (json) {
+    var stub = ObsidianEndpoint.obsidianNoteStub(json);
+    var obsidianDir = `${process.env.HOME}/code/obsidian`;
+    var notePath = `${obsidianDir}/papers/${stub}.md`;
 
     // Add the original metadata as an attachment so should the Markdown layout ever change, it
     // can all be regenerated. Guess who's been burnt by that kind of thing before.
-    var content = markdown.apiJsonToMarkdown(json, 'notable');
-    content.push(`**Metadata**: [JSON](@attachment/${stub}.json)`)
-    content.push(`**Markdown**: [${stub}.md](@note/${stub}.md)`)
+    var content = markdown.apiJsonToMarkdown(json, 'obsidian');
+    content.push("```");
+    content.push(JSON.stringify(json));
+    content.push("```");
 
     console.log(`Saving note "${stub}" to "${notePath}"`)
     fs.writeFileSync(notePath, content.join('\n'));
-    fs.writeFileSync(metadataPath, JSON.stringify(json));
 }
 
-NotableEndpoint.handle = async function (ctx, next) {
+ObsidianEndpoint.handle = async function (ctx, next) {
     await WebEndpoint.handle(ctx, next);
 
     // WebEndpoint populates ctx.response.body with the JSON-ified metadata.
-    NotableEndpoint.saveForNotable(ctx.response.body);
+    ObsidianEndpoint.saveForObsidian(ctx.response.body);
 
     ctx.set('Access-Control-Allow-Origin', '*');
     ctx.set('Access-Control-Request-Method', '*');
