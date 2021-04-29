@@ -17,8 +17,8 @@ ObsidianEndpoint.obsidianNoteStub = function (json) {
 
 ObsidianEndpoint.saveForObsidian = function (json) {
     var stub = ObsidianEndpoint.obsidianNoteStub(json);
-    var obsidianDir = `${process.env.HOME}/code/obsidian`;
-    var notePath = `${obsidianDir}/papers/${stub}.md`;
+    var obsidianDir = `${process.env.HOME}/dropbox/obsidian`;
+    var notePath = `${obsidianDir}/${stub}.md`;
 
     // Add the original metadata as an attachment so should the Markdown layout ever change, it
     // can all be regenerated. Guess who's been burnt by that kind of thing before.
